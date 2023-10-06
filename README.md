@@ -1,2 +1,2 @@
-# api_tests_reqres
-API testing framework and tests for free API https://reqres.in/
+# api_tests_numbersapi
+API testing framework and tests for free API http://numbersapi.com/
