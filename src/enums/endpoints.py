@@ -7,4 +7,5 @@ class Endpoints(Enum):
     DATE = 'http://numbersapi.com/date'
     YEAR = 'http://numbersapi.com/year'
     RANDOM = 'http://numbersapi.com/random'
+    SUBMIT = 'http://numbersapi.com/submit'
 
