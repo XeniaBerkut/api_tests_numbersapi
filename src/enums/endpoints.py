@@ -2,10 +2,9 @@ from enum import Enum
 
 
 class Endpoints(Enum):
-    BASE_URL = 'http://numbersapi.com'
-    MATH = '/math'
-    TRIVIA = '/trivia'
-    DATE = '/date'
-    YEAR = '/year'
-    RANDOM = '/random'
+    MATH = 'http://numbersapi.com/math'
+    TRIVIA = 'http://numbersapi.com/trivia'
+    DATE = 'http://numbersapi.com/date'
+    YEAR = 'http://numbersapi.com/year'
+    RANDOM = 'http://numbersapi.com/random'
 

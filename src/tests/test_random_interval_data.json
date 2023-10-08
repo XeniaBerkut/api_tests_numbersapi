@@ -1,0 +1,16 @@
+[
+  {
+    "test_case_title": "Interval: from -100 to 99",
+    "data": {
+      "min": -100,
+      "max": 99
+    }
+  },
+  {
+    "test_case_title": "Interval: from 6 to 6",
+    "data": {
+      "min": -100,
+      "max": 99
+    }
+  }
+]
