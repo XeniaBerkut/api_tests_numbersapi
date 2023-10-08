@@ -1,6 +1,5 @@
 from logging import Logger
-
-from enums.endpoints import Endpoints
+from src.enums.endpoints import Endpoints
 
 
 class Random:

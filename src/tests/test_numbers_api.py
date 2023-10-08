@@ -1,9 +1,9 @@
 import os
 
-from endpoints.random import Random
+from src.endpoints.random import Random
 import pytest
 import requests
-from helpers.test_data_helpers import get_test_data_from_json
+from src.helpers.test_data_helpers import get_test_data_from_json
 
 data_random_interval = get_test_data_from_json(os.path.join(
     os.path.dirname(__file__),
