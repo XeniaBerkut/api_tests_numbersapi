@@ -9,8 +9,8 @@
   {
     "test_case_title": "Interval: from 6 to 6",
     "data": {
-      "min": -100,
-      "max": 99
+      "min": 6,
+      "max": 6
     }
   }
 ]

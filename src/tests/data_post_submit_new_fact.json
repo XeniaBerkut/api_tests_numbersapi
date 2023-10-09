@@ -1,0 +1,15 @@
+{
+        "headers": {
+          "User-Agent": "PostmanRuntime/7.33.0",
+          "Connection": "keep-alive",
+          "Accept": "*/*",
+          "Accept-Encoding": "gzip, deflate, br",
+          "Content-Type": "application/json",
+          "Host": "numbersapi.com"
+        },
+        "body": {
+          "text": "New info for 26",
+          "number": "26",
+          "type": "trivia"
+        }
+}
