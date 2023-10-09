@@ -8,9 +8,7 @@ import pytest
 import requests
 from src.helpers.test_data_helpers import get_test_data_from_json
 
-data_random_interval = get_test_data_from_json(os.path.join(
-    os.path.dirname(__file__),
-    "data_get_random_interval.json"))
+data_random_interval = get_test_data_from_json("test_data/data_get_random_interval.json")
 
 
 @pytest.mark.parametrize("test_case",
@@ -28,9 +26,7 @@ def test_get_random_interval(logger, test_case: dict):
                                                                          f'but was text: {response.text}')
 
 
-data_get_math_fact = get_test_data_from_json(os.path.join(
-    os.path.dirname(__file__),
-    "data_get_math_facts.json"))
+data_get_math_fact = get_test_data_from_json("test_data/data_get_math_facts.json")
 
 
 @pytest.mark.parametrize("test_case",
@@ -51,7 +47,8 @@ def test_get_math_fact(logger, test_case: dict):
 
 def test_post_submit_new_fact(logger):
     logger.info("Get test data for request")
-    data = get_test_data_from_json(os.path.join(os.path.dirname(__file__), "data_post_submit_new_fact.json"))
+    # data = get_test_data_from_json(os.path.join(os.path.dirname(__file__), "data_post_submit_new_fact.json"))
+    data = get_test_data_from_json("test_data/data_post_submit_new_fact.json")
 
     logger.info(f'Send a new fact about {data["body"]["number"]}')
     response = requests.post(Endpoints.SUBMIT.value, headers=data["headers"], json=data["body"])
