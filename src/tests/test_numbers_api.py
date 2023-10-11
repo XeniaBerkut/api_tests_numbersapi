@@ -8,7 +8,7 @@ import test_data
                          test_data.data_random_number_in_interval,
                          ids=[data["test_case_title"] for data in test_data.data_random_number_in_interval])
 def test_random_number_in_interval(test_case: dict, random_endpoint):
-    """ Positive test checks if we have correct status code and the number in the response for random interval """
+    """ Check if we have correct status code and the number in the response for random interval """
 
     logging.info('Set numbers interval and check if the random number is in the interval')
     interval = test_case["data"]
@@ -20,8 +20,37 @@ def test_random_number_in_interval(test_case: dict, random_endpoint):
                                                                          f'but was text: {response.text}')
 
 
+@pytest.mark.parametrize("test_case",
+                         test_data.data_random_number_in_rational_interval,
+                         ids=[data["test_case_title"] for data in test_data.data_random_number_in_rational_interval])
+def test_random_number_in_rational_interval(test_case: dict, random_endpoint):
+    """ Check if we have correct status code and the number in the response for rational interval """
+
+    logging.info('Set rational interval and check if the random number is in the interval')
+    interval = test_case["data"]
+    random_interval_endpoint = random_endpoint.build_url_with_interval(interval)
+    logging.info(f'Get {random_interval_endpoint}')
+    response = requests.get(random_interval_endpoint)
+    assert response.status_code == 200, f'Expected status_code 200, but was {response.status_code}'
+    assert random_endpoint.number_in_rational_interval(response.text, interval), \
+        f'Expected text about number in {interval}, but was text: {response.text}'
+
+
+def test_random_words_instead_of_numbers(random_endpoint, data=test_data.data_random_words_instead_of_numbers):
+    """ Check if we have correct status and random number in the response when words are used as an interval """
+
+    logging.info('Set words as interval boundaries and check if we receive a random number')
+    interval = data
+    random_interval_endpoint = random_endpoint.build_url_with_interval(interval)
+    logging.info(f'Get {random_interval_endpoint}')
+    response = requests.get(random_interval_endpoint)
+    assert response.status_code == 200, f'Expected status_code 200, but was {response.status_code}'
+    assert random_endpoint.is_random_number(response.text), \
+        f'Expected text about number in {interval}, but was text: {response.text}'
+
+
 def test_random_number_min_more_than_max(random_endpoint, interval=test_data.data_random_number_min_more_than_max):
-    """Negative test checks if we have correct status code, no number and correct message in the response """
+    """Check if we have correct status code, no number and correct message in the response """
 
     logging.info('Set min parameter more than max in url and check that no number will be returned')
     url = random_endpoint.build_url_with_interval(interval)
@@ -36,7 +65,7 @@ def test_random_number_min_more_than_max(random_endpoint, interval=test_data.dat
                          test_data.data_get_math_fact,
                          ids=[data["test_case_title"] for data in test_data.data_get_math_fact])
 def test_get_math_fact(test_case: dict, math_endpoint):
-    """ Positive test checks if we have correct status code and the number in the response for specified number """
+    """ Check if we have correct status code and the number in the response for specified number """
 
     number = str(test_case["number"])
     logging.info(f'Get number {number} and specify an url')
@@ -51,7 +80,7 @@ def test_get_math_fact(test_case: dict, math_endpoint):
 
 
 def test_get_math_fact_rational_number(math_endpoint, number=test_data.data_get_math_fact_rational):
-    """ Negative test checks if we have correct status code and message in the response when specify rational number """
+    """ Check if we have correct status code and message in the response when specify rational number """
     number_url = math_endpoint.build_number_url(number)
     logging.info(f'Get {number_url}')
     response = requests.get(number_url)
@@ -61,7 +90,7 @@ def test_get_math_fact_rational_number(math_endpoint, number=test_data.data_get_
 
 
 def test_submit_new_fact(submit_endpoint, data=test_data.data_post_submit_new_fact):
-    """ Positive test checks if we have correct status code and empty message in the response """
+    """ Check if we have correct status code and empty message in the response """
     logging.info(f'Send a new fact about {data["number"]}')
     response = requests.post(submit_endpoint.endpoint_url, json=data)
 
@@ -70,7 +99,7 @@ def test_submit_new_fact(submit_endpoint, data=test_data.data_post_submit_new_fa
 
 
 def test_submit_new_fact_bad_request_wrong_host(submit_endpoint, data=test_data.data_post_submit_bad_request):
-    """ Negative test checks if we have correct status code and message in the response when request wrong host """
+    """ Check if we have correct status code and message in the response when request wrong host """
     logging.info(f'Send a new fact about {data["body"]["number"]}')
     response = requests.post(submit_endpoint.endpoint_url, headers=data["headers"], json=data)
 

@@ -2,7 +2,7 @@ import logging
 
 
 class MathAPIEndpoint:
-    def __init__(self, base_url='http://numbersapi.com'):
+    def __init__(self, base_url):
         self.base_url = base_url
 
     def build_number_url(self, number: str) -> str:

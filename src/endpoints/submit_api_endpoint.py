@@ -2,8 +2,8 @@ import logging
 
 
 class SubmitAPIEndpoint:
-    def __init__(self):
-        self.endpoint_url = 'http://numbersapi.com/submit'
+    def __init__(self, base_url):
+        self.endpoint_url = f'{base_url}/submit'
 
     @staticmethod
     def is_empty_response_content(content: bytes) -> bool:
